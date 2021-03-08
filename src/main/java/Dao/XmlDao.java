@@ -1,4 +1,8 @@
-package com.company;
+package Dao;
+
+import com.company.OfficeType;
+import com.company.Rentable;
+import com.company.RentableOffice;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -10,9 +14,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class XmlConverter extends Converter{
+public class XmlDao extends AbstractDao {
     public static void writeToXml() throws JAXBException {
-        RentableOffice office = new RentableOffice(1,2,3,OfficeType.OPEN_SPACE,5,6,7);
+        RentableOffice office = new RentableOffice(1,2,3, OfficeType.OPEN_SPACE,5,6,7);
         JAXBContext context = JAXBContext.newInstance(RentableOffice.class);
         Marshaller mar= context.createMarshaller();
         mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -45,7 +49,7 @@ public class XmlConverter extends Converter{
         }
     }
 
-    XmlConverter(String fileName){
+    public XmlDao(String fileName){
         super(fileName);
     }
 }

@@ -1,5 +1,6 @@
-package com.company;
+package Dao;
 
+import com.company.Rentable;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class JsonConverter extends Converter{
+public class JsonDao extends AbstractDao {
 
     @Override
     public void addToFile(List<Rentable> list) throws IOException {
@@ -43,7 +44,7 @@ public class JsonConverter extends Converter{
         return mapper.readValue(new File(fileName), new TypeReference<List<Rentable>>() {});
     }
 
-    JsonConverter(String fileName){
+    public JsonDao(String fileName){
         super(fileName);
     }
 }

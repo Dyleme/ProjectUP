@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "rentableHouse")
-@XmlType(propOrder = { "isGarageExist", "outsideArea" })
 public class RentableHouse extends RentableForLiving {
     @JsonProperty("IsGarage")
     protected boolean isGarageExist;

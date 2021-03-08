@@ -1,9 +1,11 @@
-package com.company;
+package Dao;
+
+import com.company.Rentable;
 
 import java.io.IOException;
 import java.util.List;
 
-public abstract class Converter {
+public abstract class AbstractDao {
 
     protected String fileName;
 
@@ -15,7 +17,7 @@ public abstract class Converter {
         return null;
     };
 
-    Converter(String fileName){
+    public AbstractDao(String fileName){
         this.fileName = fileName;
     }
 

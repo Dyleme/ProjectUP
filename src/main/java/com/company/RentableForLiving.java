@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "rentableForLiving")
-@XmlType(propOrder = { "bedroomsAmount", "roomsAmount", "peopleAmount", "isKitchenExist" })
 public abstract class RentableForLiving extends Rentable {
 
     @JsonProperty("BedroomsAmount")

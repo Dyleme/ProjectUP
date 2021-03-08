@@ -4,11 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement(name = "rentable")
-@XmlType(propOrder = { "pricePerMonth", "area", "floorsNumber" })
 public abstract class Rentable {
 
 

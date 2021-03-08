@@ -4,14 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.*;
 
-enum OfficeType{
+public enum OfficeType{
     OPEN_SPACE,
     ROOMS
 }
 
 @XmlRootElement(name = "RentableOffice")
-//@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"type", "placesAmount", "distanceFromMetro", "amountOfConferenceRoom" })
 public class RentableOffice extends Rentable {
 
     @JsonProperty("OfficeType")

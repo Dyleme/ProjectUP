@@ -1,6 +1,9 @@
 package com.company;
 
 
+import Dao.JsonDao;
+import Dao.XmlDao;
+
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +17,8 @@ public class Main {
 //        list.add(new RentableOffice(1,2,3,OfficeType.OPEN_SPACE,5,6,7));
 //        list.add(new RentableHouse(1,2,3,4,5,6,false));
 
-        JsonConverter jsonConverter = new JsonConverter("file.json");
-        XmlConverter xmlConverter = new XmlConverter("file.xml");
+        JsonDao jsonConverter = new JsonDao("file.json");
+        XmlDao xmlConverter = new XmlDao("file.xml");
 //        jsonConverter.addToFile(list);
 //        jsonConverter.addToFile(new RentableFlat(12,21,13,4,5,6,false,8,9,false));
         xmlConverter.addToFile(new RentableFlat(12,21,13,4,5,6,false,8,9,false));
@@ -28,7 +31,7 @@ public class Main {
 //        }
         RentableOffice office = null;
         try {
-            office = XmlConverter.readFromXML();
+            office = XmlDao.readFromXML();
         } catch (JAXBException e) {
             e.printStackTrace();
         }

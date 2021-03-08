@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "rentableFlat")
-@XmlType(propOrder = { "distanceFromMetro", "floor", "isElevatorExist" })
 public class RentableFlat extends RentableForLiving {
     @JsonProperty("DistanceMetro")
     protected int distanceFromMetro;
