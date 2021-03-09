@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.*;
 
-public enum OfficeType{
+enum OfficeType{
     OPEN_SPACE,
     ROOMS
 }

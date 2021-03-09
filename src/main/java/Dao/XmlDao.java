@@ -1,26 +1,45 @@
 package Dao;
 
-import com.company.OfficeType;
-import com.company.Rentable;
 import com.company.RentableOffice;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAnyElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class XmlDao extends AbstractDao {
+
+public class XmlDao<T> extends AbstractDao<T> {
+
+    @XmlRootElement
+    static class Wrapper<T>{
+        private final List<T> items;
+
+        public Wrapper() {
+            this.items = new ArrayList<T>();
+        }
+
+        public Wrapper(List<T> items){
+            this.items = items;
+        }
+        @XmlAnyElement(lax = true)
+        public List<T> getItems(){
+            return items;
+        }
+    }
+
+
     public static void writeToXml() throws JAXBException {
-        RentableOffice office = new RentableOffice(1,2,3, OfficeType.OPEN_SPACE,5,6,7);
         JAXBContext context = JAXBContext.newInstance(RentableOffice.class);
         Marshaller mar= context.createMarshaller();
         mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        mar.marshal(office, new File("book.xml"));
+//        mar.marshal(office, new File("book.xml"));
     }
 
     public static RentableOffice readFromXML() throws JAXBException, FileNotFoundException {
@@ -30,24 +49,32 @@ public class XmlDao extends AbstractDao {
     }
 
     @Override
-    public void addToFile(List<Rentable> list) throws IOException {
-        super.addToFile(list);
-    }
-
-    @Override
-    public void addToFile(Rentable rentable) throws IOException {
+    public void write(List<T> list) throws IOException {
+        Wrapper<T> wrapper = new Wrapper<>(list);
         try {
-            JAXBContext context = JAXBContext.newInstance(rentable.getClass());
-
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-
-            Marshaller mar = context.createMarshaller();
-            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            mar.marshal(rentable, new File(fileName));
+            JAXBContext context = JAXBContext.newInstance(Wrapper.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            marshaller.marshal(wrapper, new File(fileName));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
+
+//    @Override
+//    public void write(T objecct) throws IOException {
+//        try {
+//            JAXBContext context = JAXBContext.newInstance(objecct.getClass());
+//
+//            Unmarshaller unmarshaller = context.createUnmarshaller();
+//
+//            Marshaller mar = context.createMarshaller();
+//            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+//            mar.marshal(objecct, new File(fileName));
+//        } catch (JAXBException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public XmlDao(String fileName){
         super(fileName);

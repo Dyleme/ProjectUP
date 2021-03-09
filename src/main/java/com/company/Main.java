@@ -1,50 +1,26 @@
 package com.company;
 
 
-import Dao.JsonDao;
 import Dao.XmlDao;
 
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Rentable> list = new ArrayList<Rentable>();
-        list.add(new RentableFlat(1,2,3,4,5,6,false,8,9,false));
-//        list.add(new RentableOffice(1,2,3,OfficeType.OPEN_SPACE,5,6,7));
-//        list.add(new RentableHouse(1,2,3,4,5,6,false));
+        ArrayList<RentableOffice> list = new ArrayList<RentableOffice>();
+//        JsonDao jsonConverter = new JsonDao<RentableFlat>("file.json");
 
-        JsonDao jsonConverter = new JsonDao("file.json");
-        XmlDao xmlConverter = new XmlDao("file.xml");
-//        jsonConverter.addToFile(list);
-//        jsonConverter.addToFile(new RentableFlat(12,21,13,4,5,6,false,8,9,false));
-        xmlConverter.addToFile(new RentableFlat(12,21,13,4,5,6,false,8,9,false));
-//        List<Rentable> fromJson = Converter.readFromJson();
-//        fromJson.get(0);
-//        try {
-//            Converter.writeToXml();
-//        } catch (JAXBException e) {
-//            e.printStackTrace();
-//        }
-        RentableOffice office = null;
-        try {
-            office = XmlDao.readFromXML();
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        list.add(new RentableFlat(2,3,4,5,6,7,false, 8,9,false));
-        list.add(new RentableFlat(2,3,4,5,6,7,false, 8,9,false));
-        list.add(new RentableFlat(2,3,4,5,6,7,false, 8,9,false));
-        list.add(new RentableFlat(2,10,4,5,6,7,false, 8,9,false));
-        list.sort(new Comparator<Rentable>() {
-            @Override
-            public int compare(Rentable o1, Rentable o2) {
-                return (o2.pricePerMonth / o2.area) - (o1.pricePerMonth / o1.area);
-            }
-        });
+        XmlDao xmlConverter = new XmlDao<RentableOffice>("file.xml");
+        list.add(new RentableOffice(1,2,3,OfficeType.OPEN_SPACE,5,6,8));
+        list.add(new RentableOffice(2,2,3,OfficeType.ROOMS,5,6,8));
+        list.add(new RentableOffice(3,2,3,OfficeType.OPEN_SPACE,5,6,8));
+        list.add(new RentableOffice(4,2,3,OfficeType.ROOMS,5,6,8));
+//
+//        jsonConverter.write(list);
+//        List<RentableOffice> offices = jsonConverter.read();\
+        xmlConverter.write(list);
         return;
     }
 }
