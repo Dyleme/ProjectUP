@@ -14,18 +14,18 @@ public class Main {
         ArrayList<RentableOffice> list = new ArrayList<RentableOffice>();
 //        JsonDao jsonConverter = new JsonDao<RentableFlat>("file.json");
 
-        XmlDao xmlConverter = new XmlDao<RentableOffice>("file.xml");
+        XmlDao xmlDao = new XmlDao<RentableOffice>("file.xml");
         JsonDao jsonDao = new JsonDao<RentableOffice>("file.json", RentableOffice.class);
-        list.add(new RentableOffice(1,2,3,OfficeType.OPEN_SPACE,5,6,8));
-        list.add(new RentableOffice(2,2,3,OfficeType.ROOMS,5,6,8));
-        list.add(new RentableOffice(3,2,3,OfficeType.OPEN_SPACE,5,6,8));
-        list.add(new RentableOffice(4,2,3,OfficeType.ROOMS,5,6,8));
+        Address address = new Address("Belarus", "Minsk", "Minsk", "Filimonova", "55");
+        list.add(new RentableOffice(address,1,2,3,OfficeType.OPEN_SPACE,5,6,8));
+        list.add(new RentableOffice(address,2,2,3,OfficeType.ROOMS,5,6,8));
+        list.add(new RentableOffice(address,3,2,3,OfficeType.OPEN_SPACE,5,6,8));
+        list.add(new RentableOffice(address,4,2,3,OfficeType.ROOMS,5,6,8));
 //
-//        jsonConverter.write(list);
 //        List<RentableOffice> offices = jsonConverter.read();\
-//        xmlConverter.write(list);
+//        xmlDao.write(list);
 //        jsonDao.write(list);
-        List offices = xmlConverter.read();
+        List offices = xmlDao.read();
         List jsonOffices = jsonDao.read();
         return;
     }

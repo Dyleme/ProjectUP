@@ -27,9 +27,9 @@ public class RentableOffice extends Rentable {
     @JsonProperty("ConferenceRoom")
     protected int amountOfConferenceRoom;
 
-    public RentableOffice(int pricePerMonth, int area, int floorsNumber, OfficeType type,
+    public RentableOffice(Address address, int pricePerMonth, int area, int floorsNumber, OfficeType type,
                           int placesAmount, int distanceFromMetro, int amountOfConferenceRoom) {
-        super(pricePerMonth, area, floorsNumber);
+        super(address, pricePerMonth, area, floorsNumber);
         this.type = type;
         this.placesAmount = placesAmount;
         this.distanceFromMetro = distanceFromMetro;

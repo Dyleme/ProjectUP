@@ -13,9 +13,9 @@ public class RentableHouse extends RentableForLiving {
     @JsonProperty("OutsideArea")
     protected int outsideArea;
 
-    public RentableHouse(int pricePerMonth, int area, int floorsNumber, int bedroomsAmount,
+    public RentableHouse(Address address, int pricePerMonth, int area, int floorsNumber, int bedroomsAmount,
                          int roomsAmount, int peopleAmount, boolean isKitchenExist) {
-        super(pricePerMonth, area, floorsNumber, bedroomsAmount, roomsAmount, peopleAmount, isKitchenExist);
+        super(address, pricePerMonth, area, floorsNumber, bedroomsAmount, roomsAmount, peopleAmount, isKitchenExist);
     }
 
     public RentableHouse() {

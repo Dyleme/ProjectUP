@@ -3,7 +3,6 @@ package com.company;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "rentableFlat")
 public class RentableFlat extends RentableForLiving {
@@ -16,8 +15,8 @@ public class RentableFlat extends RentableForLiving {
     @JsonProperty("IsElevator")
     protected boolean isElevatorExist;
 
-    public RentableFlat(int pricePerMonth, int area, int floorsNumber, int bedroomsAmount, int roomsAmount, int peopleAmount, boolean isKitchenExist, int distanceFromMetro, int floor, boolean isElevatorExist) {
-        super(pricePerMonth, area, floorsNumber, bedroomsAmount, roomsAmount, peopleAmount, isKitchenExist);
+    public RentableFlat(Address address,int pricePerMonth, int area, int floorsNumber, int bedroomsAmount, int roomsAmount, int peopleAmount, boolean isKitchenExist, int distanceFromMetro, int floor, boolean isElevatorExist) {
+        super(address, pricePerMonth, area, floorsNumber, bedroomsAmount, roomsAmount, peopleAmount, isKitchenExist);
         this.distanceFromMetro = distanceFromMetro;
         this.floor = floor;
         this.isElevatorExist = isElevatorExist;

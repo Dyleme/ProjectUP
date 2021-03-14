@@ -22,9 +22,9 @@ public abstract class RentableForLiving extends Rentable {
     @JsonProperty("isKitchenExist")
     protected boolean isKitchenExist;
 
-    public RentableForLiving(int pricePerMonth, int area, int floorsNumber, int bedroomsAmount,
+    public RentableForLiving(Address address, int pricePerMonth, int area, int floorsNumber, int bedroomsAmount,
                              int roomsAmount, int peopleAmount, boolean isKitchenExist) {
-        super(pricePerMonth, area, floorsNumber);
+        super(address, pricePerMonth, area, floorsNumber);
         this.bedroomsAmount = bedroomsAmount;
         this.roomsAmount = roomsAmount;
         this.peopleAmount = peopleAmount;

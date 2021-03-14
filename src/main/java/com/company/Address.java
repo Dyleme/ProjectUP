@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Addres")
-public class Addres {
+@XmlRootElement(name = "Address")
+public class Address {
 
     @JsonProperty("Country")
     protected String country;
@@ -24,9 +24,9 @@ public class Addres {
     @JsonProperty("HouseNumber")
     protected String houseNumber;
 
-    public Addres() {}
+    public Address() {}
 
-    public Addres(String country, String region, String city, String street, String houseNumber) {
+    public Address(String country, String region, String city, String street, String houseNumber) {
         this.country = country;
         this.region = region;
         this.city = city;
