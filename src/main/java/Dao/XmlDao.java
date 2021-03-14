@@ -5,7 +5,7 @@ import com.company.RentableOffice;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlAnyElement;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,25 +14,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement
+class Wrapper<T>{
+    private final List<T> items;
+
+    public Wrapper() {
+        this.items = new ArrayList<T>();
+    }
+
+    public Wrapper(List<T> items){
+        this.items = items;
+    }
+    @XmlElement()
+    public List<T> getItems(){
+        return items;
+    }
+}
+
 
 public class XmlDao<T> extends AbstractDao<T> {
-
-    @XmlRootElement
-    static class Wrapper<T>{
-        private final List<T> items;
-
-        public Wrapper() {
-            this.items = new ArrayList<T>();
-        }
-
-        public Wrapper(List<T> items){
-            this.items = items;
-        }
-        @XmlAnyElement(lax = true)
-        public List<T> getItems(){
-            return items;
-        }
-    }
 
 
     public static void writeToXml() throws JAXBException {

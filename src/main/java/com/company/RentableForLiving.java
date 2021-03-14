@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 @XmlRootElement(name = "rentableForLiving")
+@XmlSeeAlso({RentableFlat.class, RentableHouse.class})
 public abstract class RentableForLiving extends Rentable {
 
     @JsonProperty("BedroomsAmount")
