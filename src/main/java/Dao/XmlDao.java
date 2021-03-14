@@ -5,8 +5,6 @@ import com.company.RentableOffice;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,22 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement
-class Wrapper<T>{
-    private final List<T> items;
-
-    public Wrapper() {
-        this.items = new ArrayList<T>();
-    }
-
-    public Wrapper(List<T> items){
-        this.items = items;
-    }
-    @XmlElement()
-    public List<T> getItems(){
-        return items;
-    }
-}
 
 
 public class XmlDao<T> extends AbstractDao<T> {
@@ -61,20 +43,17 @@ public class XmlDao<T> extends AbstractDao<T> {
         }
     }
 
-//    @Override
-//    public void write(T objecct) throws IOException {
-//        try {
-//            JAXBContext context = JAXBContext.newInstance(objecct.getClass());
-//
-//            Unmarshaller unmarshaller = context.createUnmarshaller();
-//
-//            Marshaller mar = context.createMarshaller();
-//            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-//            mar.marshal(objecct, new File(fileName));
-//        } catch (JAXBException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Override
+    public List<T> read() throws IOException {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Wrapper.class);
+            return ((Wrapper<T>) context.createUnmarshaller()
+                    .unmarshal(new FileReader(fileName))).getItems();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
 
     public XmlDao(String fileName){
         super(fileName);

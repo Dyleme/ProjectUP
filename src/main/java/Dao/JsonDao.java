@@ -1,6 +1,6 @@
 package Dao;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -8,6 +8,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class JsonDao<T> extends AbstractDao<T> {
+
+    public Class<T> tClass;
+
+
+    public JsonDao(String fileName, Class<T> clazz){
+        super(fileName);
+        tClass = clazz;
+    }
 
     @Override
     public void write(List<T> list) throws IOException {
@@ -18,10 +26,8 @@ public class JsonDao<T> extends AbstractDao<T> {
     @Override
     public List<T> read() throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(new File(fileName), new TypeReference<List<T>>() {});
-    }
-
-    public JsonDao(String fileName){
-        super(fileName);
+        JavaType type = mapper.getTypeFactory().
+                constructCollectionType(List.class, tClass);
+        return mapper.readValue(new File(fileName), type);
     }
 }

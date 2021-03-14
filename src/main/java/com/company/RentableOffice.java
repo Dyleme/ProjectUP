@@ -2,7 +2,9 @@ package com .company;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 enum OfficeType{
     OPEN_SPACE,
@@ -10,6 +12,7 @@ enum OfficeType{
 }
 
 @XmlRootElement(name = "RentableOffice")
+@XmlSeeAlso({Rentable.class})
 public class RentableOffice extends Rentable {
 
     @JsonProperty("OfficeType")
