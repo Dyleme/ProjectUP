@@ -9,8 +9,6 @@ public abstract class AbstractDao <T>{
 
     public void write(List<T> list) throws IOException {}
 
-//    public void write(T object) throws IOException {}
-
     public List<T> read() throws IOException {
         return null;
     };

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class JsonDao<T> extends AbstractDao<T> {
 
-    public Class<T> tClass;
+    private final Class<T> tClass;
 
 
     public JsonDao(String fileName, Class<T> clazz){
