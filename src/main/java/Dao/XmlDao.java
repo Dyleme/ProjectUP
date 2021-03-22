@@ -18,6 +18,7 @@ public class XmlDao<T> extends AbstractDao<T> {
 
     @Override
     public void write(List<T> list) throws IOException {
+        log.info(JsonDao.class.getName() + " writing");
         Wrapper<T> wrapper = new Wrapper<>(list);
         try {
             JAXBContext context = JAXBContext.newInstance(Wrapper.class);
@@ -31,6 +32,7 @@ public class XmlDao<T> extends AbstractDao<T> {
 
     @Override
     public List<T> read() throws IOException {
+        log.info(JsonDao.class.getName() + " reading");
         try {
             JAXBContext context = JAXBContext.newInstance(Wrapper.class);
             return ((Wrapper<T>) context.createUnmarshaller()

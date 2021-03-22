@@ -8,13 +8,24 @@ import Renatble.Address;
 import Renatble.OfficeType;
 import Renatble.RentableOffice;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.LogManager;
+
 
 public class Main {
 
+
+
     public static void main(String[] args) throws IOException {
+
+        try {
+            LogManager.getLogManager().readConfiguration(new FileInputStream("C:\\programs\\UP\\Project\\src\\main\\java\\logging.properties"));
+        } catch (IOException e) {
+            System.err.println("Could not setup logger configuration: " + e.toString());
+        }
         ArrayList<RentableOffice> list = new ArrayList<RentableOffice>();
 //        JsonDao jsonConverter = new JsonDao<RentableFlat>("file.json");
 

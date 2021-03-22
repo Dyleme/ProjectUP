@@ -2,8 +2,11 @@ package Dao;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 public abstract class AbstractDao <T>{
+
+    protected static Logger log = Logger.getLogger(AbstractDao.class.getName());
 
     protected String fileName;
 

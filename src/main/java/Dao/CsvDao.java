@@ -27,6 +27,7 @@ public class CsvDao<T> extends AbstractDao<T>{
 
     @Override
     public List<T> read() throws IOException {
+        log.info(JsonDao.class.getName() + " reading");
         Scanner scanner = new Scanner(new File(fileName));
         List<T> list = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -113,6 +114,7 @@ public class CsvDao<T> extends AbstractDao<T>{
 
     @Override
     public void write(List<T> list) throws IOException {
+        log.info(JsonDao.class.getName() + " writing");
         printWriter = new PrintWriter(new File(fileName));
         for(T temp : list){
             try {
