@@ -55,7 +55,7 @@ public class RentableOffice extends Rentable {
         return amountOfConferenceRoom;
     }
 
-    public String getTypeAsString(){return type.toString();}
+//    public String getTypeAsString(){return type.toString();}
 
     public void setType(OfficeType type) {
         this.type = type;

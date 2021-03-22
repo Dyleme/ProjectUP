@@ -2,9 +2,14 @@ package Renatble;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.NotNull;
+import validator.CapitalLetterValidator;
+import validator.NumberValidator;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @XmlRootElement(name = "Address")
 public class Address {
@@ -27,11 +32,39 @@ public class Address {
     public Address() {}
 
     public Address(String country, String region, String city, String street, String houseNumber) {
+        if(!CapitalLetterValidator.isValid(country)) {
+            country = makeFirstLetterCapitall(country);
+        }
+        if(!CapitalLetterValidator.isValid(region)){
+            region = makeFirstLetterCapitall(region);
+        }
+        if(!CapitalLetterValidator.isValid(city)){
+            city = makeFirstLetterCapitall(city);
+        }
+        if(!CapitalLetterValidator.isValid(street)){
+            street = makeFirstLetterCapitall(street);
+        }
+        if (!NumberValidator.isValid(houseNumber)) {
+            Pattern pattern = Pattern.compile("[1-9][0-9]*");
+            Matcher matcher = pattern.matcher(houseNumber);
+            if (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                houseNumber = houseNumber.substring(start, end);
+            } else {
+                houseNumber = "0";
+            }
+        }
         this.country = country;
         this.region = region;
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
+    }
+
+    @NotNull
+    private String makeFirstLetterCapitall(String string) {
+        return Character.toUpperCase(string.charAt(0)) + string.substring(1);
     }
 
     @XmlElement()
