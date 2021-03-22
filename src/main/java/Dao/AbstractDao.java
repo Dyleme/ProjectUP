@@ -13,6 +13,14 @@ public abstract class AbstractDao <T>{
         return null;
     };
 
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
     public AbstractDao(String fileName){
         this.fileName = fileName;
     }

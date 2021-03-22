@@ -1,6 +1,6 @@
 package Dao;
 
-import com.company.Rentable;
+import Renatble.Rentable;
 
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlRootElement;

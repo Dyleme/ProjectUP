@@ -1,4 +1,4 @@
-package com.company;
+package Renatble;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +15,7 @@ public class RentableFlat extends RentableForLiving {
     @JsonProperty("IsElevator")
     protected boolean isElevatorExist;
 
-    public RentableFlat(Address address,int pricePerMonth, int area, int floorsNumber, int bedroomsAmount, int roomsAmount, int peopleAmount, boolean isKitchenExist, int distanceFromMetro, int floor, boolean isElevatorExist) {
+    public RentableFlat(Address address, int pricePerMonth, int area, int floorsNumber, int bedroomsAmount, int roomsAmount, int peopleAmount, boolean isKitchenExist, int distanceFromMetro, int floor, boolean isElevatorExist) {
         super(address, pricePerMonth, area, floorsNumber, bedroomsAmount, roomsAmount, peopleAmount, isKitchenExist);
         this.distanceFromMetro = distanceFromMetro;
         this.floor = floor;
@@ -46,7 +46,7 @@ public class RentableFlat extends RentableForLiving {
         this.floor = floor;
     }
 
-    public void setElevatorExist(boolean elevatorExist) {
+    public void setIsElevatorExist(boolean elevatorExist) {
         isElevatorExist = elevatorExist;
     }
 }

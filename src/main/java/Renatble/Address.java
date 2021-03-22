@@ -1,4 +1,4 @@
-package com.company;
+package Renatble;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

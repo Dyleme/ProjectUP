@@ -1,4 +1,4 @@
-package com.company;
+package Renatble;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -32,7 +32,7 @@ public class RentableHouse extends RentableForLiving {
         return outsideArea;
     }
 
-    public void setGarageExist(boolean garageExist) {
+    public void setIsGarageExist(boolean garageExist) {
         isGarageExist = garageExist;
     }
 

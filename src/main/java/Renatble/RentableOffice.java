@@ -1,15 +1,10 @@
-package com .company;
+package Renatble;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
-
-enum OfficeType{
-    OPEN_SPACE,
-    ROOMS
-}
 
 @XmlRootElement(name = "RentableOffice")
 @XmlSeeAlso({Rentable.class})

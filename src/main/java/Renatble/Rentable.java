@@ -1,4 +1,4 @@
-package com.company;
+package Renatble;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -55,6 +55,10 @@ public abstract class Rentable {
         return address;
     }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
     public void setPricePerMonth(int pricePerMonth) {
         this.pricePerMonth = pricePerMonth;
     }
@@ -67,9 +71,6 @@ public abstract class Rentable {
         this.floorsNumber = floorsNumber;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     @Override
     public String toString() {

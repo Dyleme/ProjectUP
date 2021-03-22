@@ -1,0 +1,55 @@
+[ {
+  "Address" : {
+    "Country" : "Belarus",
+    "Region" : "Mogilew",
+    "City" : "Mogilew",
+    "Street" : "Howl",
+    "HouseNumber" : "55"
+  },
+  "Price" : 23,
+  "Area" : 23,
+  "Floors" : 543,
+  "BedroomsAmount" : 43,
+  "RoomsAmount" : 43,
+  "PeopleAmount" : 43,
+  "isKitchenExist" : false,
+  "DistanceMetro" : 43,
+  "Floor" : 543,
+  "IsElevator" : true
+}, {
+  "Address" : {
+    "Country" : "Russia",
+    "Region" : "Sankt-Petersburg",
+    "City" : "Sankt-Petersburg",
+    "Street" : "Lenina",
+    "HouseNumber" : "23"
+  },
+  "Price" : 32,
+  "Area" : 42,
+  "Floors" : 42,
+  "BedroomsAmount" : 16,
+  "RoomsAmount" : 43,
+  "PeopleAmount" : 76,
+  "isKitchenExist" : true,
+  "DistanceMetro" : 2,
+  "Floor" : 65,
+  "IsElevator" : true
+}, {
+  "Address" : {
+    "Country" : "Belarus",
+    "Region" : "Minsk",
+    "City" : "Minsk",
+    "Street" : "Forecast",
+    "HouseNumber" : "093"
+  },
+  "Price" : 94,
+  "Area" : 49,
+  "Floors" : 39,
+  "BedroomsAmount" : 20,
+  "RoomsAmount" : 4,
+  "PeopleAmount" : 3,
+  "isKitchenExist" : false,
+  "DistanceMetro" : 2,
+  "Floor" : 1,
+  "IsElevator" : true
+} ]

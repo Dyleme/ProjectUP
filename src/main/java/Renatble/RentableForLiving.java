@@ -1,4 +1,4 @@
-package com.company;
+package Renatble;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -67,7 +67,7 @@ public abstract class RentableForLiving extends Rentable {
         this.peopleAmount = peopleAmount;
     }
 
-    public void setKitchenExist(boolean kitchenExist) {
+    public void setIsKitchenExist(boolean kitchenExist) {
         isKitchenExist = kitchenExist;
     }
 }
