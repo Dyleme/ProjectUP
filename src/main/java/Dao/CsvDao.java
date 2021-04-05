@@ -54,14 +54,14 @@ public class CsvDao<T> extends AbstractDao<T>{
             return lineScanner.nextBoolean();
         } else if (clazz.equals(String.class)) {
             return lineScanner.next();
-        } else if(clazz.equals(OfficeType.class)){
-            String string = lineScanner.next();
-            return Enum.valueOf(OfficeType.class, string);
-        }
-//        } else if (clazz.isEnum()) {
+//        } else if(clazz.equals(OfficeType.class)){
 //            String string = lineScanner.next();
-//            return Enum.valueOf(clazz, string);
-//        }
+//            return Enum.valueOf(OfficeType.class, string);
+        } else if (clazz.isEnum()) {
+            Class<? extends Enum> enumClazz = (Class<? extends Enum>)clazz;
+            String string = lineScanner.next();
+            return Enum.valueOf(enumClazz, string);
+        }
         if (object == null) {
             object = clazz.getConstructor().newInstance();
         }
