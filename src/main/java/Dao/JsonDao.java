@@ -19,17 +19,17 @@ public class JsonDao<T> extends AbstractDao<T> {
 
     @Override
     public void write(List<T> list) throws IOException {
-        log.info(JsonDao.class.getName() + " writing");
+        AbstractDao.log.info(JsonDao.class.getName() + " writing");
         final ObjectMapper mapper = new ObjectMapper();
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), list);
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(super.fileName), list);
     }
 
     @Override
     public List<T> read() throws IOException {
-        log.info(JsonDao.class.getName() + " reading");
+        super.log.info(JsonDao.class.getName() + " reading");
         final ObjectMapper mapper = new ObjectMapper();
         JavaType type = mapper.getTypeFactory().
                 constructCollectionType(List.class, tClass);
-        return mapper.readValue(new File(fileName), type);
+        return mapper.readValue(new File(super.fileName), type);
     }
 }

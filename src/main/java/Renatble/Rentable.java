@@ -11,9 +11,13 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({RentableOffice.class, RentableForLiving.class})
 public abstract class Rentable {
 
+    private static int next_id;
+
+    @JsonProperty("Id")
+    protected int id;
+
     @JsonProperty("Address")
     protected Address address;
-
 
     @JsonProperty("Price")
     protected int pricePerMonth;
@@ -25,6 +29,8 @@ public abstract class Rentable {
     protected int floorsNumber;
 
     public Rentable(Address address, int pricePerMonth, int area, int floorsNumber) {
+        this.id = next_id;
+        next_id++;
         this.address = address;
         this.pricePerMonth = pricePerMonth;
         this.area = area;
@@ -33,6 +39,11 @@ public abstract class Rentable {
 
     public Rentable() {
         super();
+    }
+
+    @XmlElement()
+    public int getId() {
+        return id;
     }
 
     @XmlElement()
@@ -54,6 +65,8 @@ public abstract class Rentable {
     public Address getAddress() {
         return address;
     }
+
+    private void setId(int id){ this.id = id; }
 
     public void setAddress(Address address) {
         this.address = address;
