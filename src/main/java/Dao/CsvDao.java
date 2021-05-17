@@ -75,7 +75,8 @@ public class CsvDao<T> extends AbstractDao<T>{
             String setterName = new String("set");
             setterName += Character.toUpperCase(fieldName.charAt(0));
             setterName += fieldName.substring(1);
-            Method setter = clazz.getMethod(setterName,field.getType());
+            Method setter = clazz.getDeclaredMethod(setterName,field.getType());
+            setter.setAccessible(true);
             Class<?>[] parameterClasses = setter.getParameterTypes();
             setter.invoke(object,readObj(parameterClasses[0], null));
         }
@@ -106,7 +107,8 @@ public class CsvDao<T> extends AbstractDao<T>{
                 String getterName = new String("get");
                 getterName += Character.toUpperCase(fieldName.charAt(0));
                 getterName += fieldName.substring(1);
-                Method getter = clazz.getMethod(getterName);
+                Method getter = clazz.getDeclaredMethod(getterName);
+                getter.setAccessible(true);
                 writeObj(getter.invoke(obj), getter.getReturnType());
             }
         }
