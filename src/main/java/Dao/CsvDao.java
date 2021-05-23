@@ -27,8 +27,8 @@ public class CsvDao<T> extends AbstractDao<T>{
 
     @Override
     public List<T> read() throws IOException {
-        log.info(JsonDao.class.getName() + " reading");
-        Scanner scanner = new Scanner(new File(fileName));
+        AbstractDao.log.info(JsonDao.class.getName() + " reading");
+        Scanner scanner = new Scanner(new File(super.fileName));
         List<T> list = new ArrayList<>();
         while (scanner.hasNextLine()) {
             lineScanner = new Scanner(scanner.nextLine()).useDelimiter(";");
@@ -54,14 +54,14 @@ public class CsvDao<T> extends AbstractDao<T>{
             return lineScanner.nextBoolean();
         } else if (clazz.equals(String.class)) {
             return lineScanner.next();
-        } else if(clazz.equals(OfficeType.class)){
-            String string = lineScanner.next();
-            return Enum.valueOf(OfficeType.class, string);
-        }
-//        } else if (clazz.isEnum()) {
+//        } else if(clazz.equals(OfficeType.class)){
 //            String string = lineScanner.next();
-//            return Enum.valueOf(clazz, string);
-//        }
+//            return Enum.valueOf(OfficeType.class, string);
+        } else if (clazz.isEnum()) {
+            Class<? extends Enum> enumClazz = (Class<? extends Enum>)clazz;
+            String string = lineScanner.next();
+            return Enum.valueOf(enumClazz, string);
+        }
         if (object == null) {
             object = clazz.getConstructor().newInstance();
         }
@@ -75,7 +75,8 @@ public class CsvDao<T> extends AbstractDao<T>{
             String setterName = new String("set");
             setterName += Character.toUpperCase(fieldName.charAt(0));
             setterName += fieldName.substring(1);
-            Method setter = clazz.getMethod(setterName,field.getType());
+            Method setter = clazz.getDeclaredMethod(setterName,field.getType());
+            setter.setAccessible(true);
             Class<?>[] parameterClasses = setter.getParameterTypes();
             setter.invoke(object,readObj(parameterClasses[0], null));
         }
@@ -106,7 +107,8 @@ public class CsvDao<T> extends AbstractDao<T>{
                 String getterName = new String("get");
                 getterName += Character.toUpperCase(fieldName.charAt(0));
                 getterName += fieldName.substring(1);
-                Method getter = clazz.getMethod(getterName);
+                Method getter = clazz.getDeclaredMethod(getterName);
+                getter.setAccessible(true);
                 writeObj(getter.invoke(obj), getter.getReturnType());
             }
         }
@@ -114,8 +116,8 @@ public class CsvDao<T> extends AbstractDao<T>{
 
     @Override
     public void write(List<T> list) throws IOException {
-        log.info(JsonDao.class.getName() + " writing");
-        printWriter = new PrintWriter(new File(fileName));
+        AbstractDao.log.info(JsonDao.class.getName() + " writing");
+        printWriter = new PrintWriter(new File(super.fileName));
         for(T temp : list){
             try {
                 writeObj(temp, tClass);

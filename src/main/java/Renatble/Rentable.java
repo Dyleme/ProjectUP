@@ -5,15 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.UUID;
 
 
 @XmlRootElement(name = "rentable")
 @XmlSeeAlso({RentableOffice.class, RentableForLiving.class})
 public abstract class Rentable {
 
+
+    @JsonProperty("UUID")
+    protected String uuid;
+
     @JsonProperty("Address")
     protected Address address;
-
 
     @JsonProperty("Price")
     protected int pricePerMonth;
@@ -25,6 +29,7 @@ public abstract class Rentable {
     protected int floorsNumber;
 
     public Rentable(Address address, int pricePerMonth, int area, int floorsNumber) {
+        this.uuid = UUID.randomUUID().toString();
         this.address = address;
         this.pricePerMonth = pricePerMonth;
         this.area = area;
@@ -33,6 +38,11 @@ public abstract class Rentable {
 
     public Rentable() {
         super();
+    }
+
+    @XmlElement()
+    public String getUuid() {
+        return uuid;
     }
 
     @XmlElement()
@@ -54,6 +64,8 @@ public abstract class Rentable {
     public Address getAddress() {
         return address;
     }
+
+    private void setUuid(String uuid){ this.uuid = uuid; }
 
     public void setAddress(Address address) {
         this.address = address;
